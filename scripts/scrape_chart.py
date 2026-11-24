@@ -1,23 +1,30 @@
 #!/usr/bin/env python3
-"""Extract the price-history chart series that PriceCharting embeds in an item
-page (the data behind the "Show Historic Prices" chart) and write a tidy CSV.
+"""Extract the price-history chart series that PriceCharting embeds in item
+pages and write one tidy CSV covering several card versions.
 
     pip install requests
-    python scrape_chart.py                  # -> chart.csv
-    python scrape_chart.py --dump           # print the series keys found, for debugging
+    python scrape_chart.py --dump     # print series keys per card, for debugging
+    python scrape_chart.py            # -> src/data/prices.csv
 """
 import argparse
 import csv
 import json
+import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 
 import requests
 
-URL = "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/charizard-6"
+CARDS = {
+    "Japanese": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/charizard-6",
+    "English Unlimited": "https://www.pricecharting.com/game/pokemon-base-set/charizard-4",
+    "English 1st Edition": "https://www.pricecharting.com/game/pokemon-base-set/charizard-1st-edition-4",
+    "English Shadowless": "https://www.pricecharting.com/game/pokemon-base-set/charizard-shadowless-4",
+}
 
-# Chart series key -> grade label (same order as the price table on the page).
+# Chart series key -> grade label.
 SERIES = {
     "used": "Ungraded",
     "cib": "Grade 7",
@@ -27,9 +34,10 @@ SERIES = {
     "manualonly": "PSA 10",
 }
 
+FIELDS = ["date", "version", "series", "grade", "price"]
+
 
 def extract_chart_data(html):
-    """Find `chart_data = {...}` in the page's inline JS and parse the object."""
     m = re.search(r"chart_data\s*=\s*", html)
     if not m:
         raise ValueError("chart_data not found in page source")
@@ -38,47 +46,81 @@ def extract_chart_data(html):
     return obj
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--url", default=URL)
-    ap.add_argument("--out", default="chart.csv")
-    ap.add_argument("--divisor", type=float, default=100.0,
-                    help="values are assumed to be cents; use 1 if they are dollars")
-    ap.add_argument("--dump", action="store_true")
-    args = ap.parse_args()
-
-    resp = requests.get(args.url, timeout=30, headers={
+def fetch_chart(url):
+    resp = requests.get(url, timeout=30, headers={
         "User-Agent": "Mozilla/5.0 (personal price-history project)"})
     resp.raise_for_status()
+    return extract_chart_data(resp.text)
 
-    try:
-        data = extract_chart_data(resp.text)
-    except (ValueError, json.JSONDecodeError) as e:
-        sys.exit(f"error: {e}")
 
-    if args.dump:
-        for k, v in data.items():
-            print(k, len(v), v[:2])
-        return
-
+def to_rows(version, data, divisor):
     rows = []
     for key, label in SERIES.items():
         for ts, value in data.get(key, []):
             if not value:  # 0 / null = no sales that month
                 continue
             day = datetime.fromtimestamp(ts / 1000, tz=timezone.utc).date().isoformat()
-            rows.append({"date": day, "series": key, "grade": label,
-                         "price": round(value / args.divisor, 2)})
+            rows.append({"date": day, "version": version, "series": key,
+                         "grade": label, "price": round(value / divisor, 2)})
+    return rows
 
-    if not rows:
-        sys.exit("error: no data points parsed (series keys changed? try --dump)")
 
-    rows.sort(key=lambda r: (r["grade"], r["date"]))
+def load_existing(path):
+    if not os.path.exists(path):
+        return []
+    with open(path, newline="", encoding="utf-8") as f:
+        return [r for r in csv.DictReader(f) if "version" in r]
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default="src/data/prices.csv")
+    ap.add_argument("--divisor", type=float, default=100.0,
+                    help="values are assumed to be cents; use 1 if dollars")
+    ap.add_argument("--dump", action="store_true")
+    args = ap.parse_args()
+
+    existing = load_existing(args.out)
+    fresh, failed = [], []
+
+    for i, (version, url) in enumerate(CARDS.items()):
+        if i:
+            time.sleep(2)  # be polite between requests
+        try:
+            data = fetch_chart(url)
+        except (requests.RequestException, ValueError, json.JSONDecodeError) as e:
+            print(f"warning: {version}: {e}", file=sys.stderr)
+            failed.append(version)
+            continue
+        if args.dump:
+            print(f"== {version}")
+            for k, v in data.items():
+                print(" ", k, len(v), v[:2])
+            continue
+        rows = to_rows(version, data, args.divisor)
+        if not rows:
+            print(f"warning: {version}: no data points parsed", file=sys.stderr)
+            failed.append(version)
+            continue
+        fresh += rows
+        print(f"{version}: {len(rows)} points")
+
+    if args.dump:
+        return
+
+    # A failed card keeps its previously saved rows instead of vanishing.
+    kept = [r for r in existing if r["version"] in failed]
+    rows = fresh + kept
+    if not fresh:
+        sys.exit("error: nothing scraped from any card")
+
+    rows.sort(key=lambda r: (r["version"], r["grade"], r["date"]))
+    os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["date", "series", "grade", "price"])
+        w = csv.DictWriter(f, fieldnames=FIELDS)
         w.writeheader()
         w.writerows(rows)
-    print(f"{len(rows)} points -> {args.out}")
+    print(f"{len(rows)} rows -> {args.out}")
 
 
 if __name__ == "__main__":
