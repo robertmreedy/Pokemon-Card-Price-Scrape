@@ -18,10 +18,12 @@ from datetime import datetime, timezone
 import requests
 
 CARDS = {
-    "Japanese": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/charizard-6",
+    "Japanese Charizard": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/charizard-6",
     "English Unlimited": "https://www.pricecharting.com/game/pokemon-base-set/charizard-4",
     "English 1st Edition": "https://www.pricecharting.com/game/pokemon-base-set/charizard-1st-edition-4",
     "English Shadowless": "https://www.pricecharting.com/game/pokemon-base-set/charizard-shadowless-4",
+    "Japanese Blastoise": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/blastoise-9",
+    "Japanese Venusaur": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/venusaur-3"
 }
 
 # Chart series key -> grade label.
