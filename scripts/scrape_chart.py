@@ -19,11 +19,17 @@ import requests
 
 CARDS = {
     "Japanese Charizard": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/charizard-6",
-    "English Unlimited": "https://www.pricecharting.com/game/pokemon-base-set/charizard-4",
-    "English 1st Edition": "https://www.pricecharting.com/game/pokemon-base-set/charizard-1st-edition-4",
-    "English Shadowless": "https://www.pricecharting.com/game/pokemon-base-set/charizard-shadowless-4",
+    "English Charizard Unlimited": "https://www.pricecharting.com/game/pokemon-base-set/charizard-4",
+    "English Charizard 1st Edition": "https://www.pricecharting.com/game/pokemon-base-set/charizard-1st-edition-4",
+    "English Charizard Shadowless": "https://www.pricecharting.com/game/pokemon-base-set/charizard-shadowless-4",
     "Japanese Blastoise": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/blastoise-9",
-    "Japanese Venusaur": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/venusaur-3"
+    "English Blastoise 1st Edition": "https://www.pricecharting.com/game/pokemon-base-set/blastoise-1st-edition-2",
+    "English Blastoise Shadowless": "https://www.pricecharting.com/game/pokemon-base-set/blastoise-shadowless-2",
+    "English Blastoise Unlimited": "https://www.pricecharting.com/game/pokemon-base-set/blastoise-2",
+    "Japanese Venusaur": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/venusaur-3",
+    "English Venusaur 1st Edition": "https://www.pricecharting.com/game/pokemon-base-set/venusaur-1st-edition-15",
+    "English Venusaur Shadowless": "https://www.pricecharting.com/game/pokemon-base-set/venusaur-shadowless-15",
+    "English Venusaur Unlimited": "https://www.pricecharting.com/game/pokemon-base-set/venusaur-15"
 }
 
 # Chart series key -> grade label.
