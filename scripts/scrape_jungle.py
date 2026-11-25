@@ -86,7 +86,7 @@ def load_existing(path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="src/data/prices.csv")
+    ap.add_argument("--out", default="src/data/jungle_prices.csv")
     ap.add_argument("--divisor", type=float, default=100.0,
                     help="values are assumed to be cents; use 1 if dollars")
     ap.add_argument("--dump", action="store_true")
