@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
-"""Extract the price-history chart series that PriceCharting embeds in item
-pages and write one tidy CSV covering several card versions.
+"""Scrape PriceCharting item pages: the embedded price-history chart and the
+population report. One request per page feeds both outputs.
 
-    pip install requests
-    python scrape_chart.py --dump     # print series keys per card, for debugging
-    python scrape_chart.py            # -> src/data/prices.csv
+    pip install requests beautifulsoup4
+    python scrape_chart.py                  # -> src/data/prices.csv + src/data/pop.csv
+    python scrape_chart.py --dump           # chart series keys per card
+    python scrape_chart.py --dump-pop       # what the pop parser found per card
+    python scrape_chart.py --save-html dbg  # save each page's raw HTML to ./dbg
 """
 import argparse
 import csv
@@ -13,9 +14,10 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
 import requests
+from bs4 import BeautifulSoup
 
 CARDS = {
     "Japanese Charizard": "https://www.pricecharting.com/game/pokemon-japanese-expansion-pack/charizard-6",
@@ -43,7 +45,25 @@ SERIES = {
 }
 
 FIELDS = ["date", "version", "series", "grade", "price"]
+POP_FIELDS = ["version", "grader", "grade", "pop", "scraped_on"]
 
+GRADERS = {"psa", "bgs", "cgc", "sgc", "tag", "ace", "total"}
+COUNT_WORDS = {"pop", "population", "count"}
+GRADE_RE = re.compile(
+    r"^(?:grade\s*)?(?:(psa|bgs|cgc|sgc|tag|ace)\s*)?(\d{1,2}(?:\.\d)?)"
+    r"(?:\s*(?:pristine|prist\.?|black))?$", re.I)
+
+
+# ---------- fetching ----------
+
+def fetch_html(url):
+    resp = requests.get(url, timeout=30, headers={
+        "User-Agent": "Mozilla/5.0 (personal price-history project)"})
+    resp.raise_for_status()
+    return resp.text
+
+
+# ---------- price chart ----------
 
 def extract_chart_data(html):
     m = re.search(r"chart_data\s*=\s*", html)
@@ -52,13 +72,6 @@ def extract_chart_data(html):
     start = html.index("{", m.end())
     obj, _ = json.JSONDecoder().raw_decode(html[start:])
     return obj
-
-
-def fetch_chart(url):
-    resp = requests.get(url, timeout=30, headers={
-        "User-Agent": "Mozilla/5.0 (personal price-history project)"})
-    resp.raise_for_status()
-    return extract_chart_data(resp.text)
 
 
 def to_rows(version, data, divisor):
@@ -73,6 +86,76 @@ def to_rows(version, data, divisor):
     return rows
 
 
+# ---------- population report ----------
+
+def _text(el):
+    return re.sub(r"\s+", " ", el.get_text(" ", strip=True))
+
+
+def _num(s):
+    m = re.search(r"\d[\d,]*", s)
+    return int(m.group().replace(",", "")) if m else None
+
+
+def _is_grader(h):
+    h = h.lower().strip()
+    return h in GRADERS or h in COUNT_WORDS
+
+
+def parse_pop_table(table):
+    """Return [(grader, grade, pop)] if this looks like a population table, else [].
+    Handles graders-as-columns and graders-as-rows."""
+    rows = [[_text(c) for c in tr.find_all(["th", "td"])] for tr in table.find_all("tr")]
+    rows = [r for r in rows if r]
+    if len(rows) < 2:
+        return []
+    header, body = rows[0], rows[1:]
+    if any("sale date" in h.lower() for h in header):
+        return []
+
+    out = []
+    row_labels = [r[0] for r in body]
+    head = header[1:]
+
+    if (sum(bool(GRADE_RE.match(x)) for x in row_labels) >= 0.6 * len(row_labels)
+            and head and all(_is_grader(h) for h in head)):
+        # rows = grades, columns = graders
+        for r in body:
+            m = GRADE_RE.match(r[0])
+            if not m:
+                continue
+            for j, grader in enumerate(head):
+                n = _num(r[j + 1]) if j + 1 < len(r) else None
+                if n is not None:
+                    out.append(((m.group(1) or grader).upper(), m.group(2), n))
+    elif (sum(bool(GRADE_RE.match(h)) for h in head) >= 0.6 * max(len(head), 1)
+            and all(_is_grader(x) for x in row_labels)):
+        # rows = graders, columns = grades
+        for r in body:
+            for j, h in enumerate(head):
+                m = GRADE_RE.match(h)
+                n = _num(r[j + 1]) if j + 1 < len(r) else None
+                if m and n is not None:
+                    out.append((r[0].upper(), m.group(2), n))
+
+    return out if len(out) >= 3 else []
+
+
+def extract_pop(html):
+    soup = BeautifulSoup(html, "html.parser")
+    seen, rows = set(), []
+    for table in soup.find_all("table"):
+        for grader, grade, n in parse_pop_table(table):
+            if (grader, grade) not in seen:
+                seen.add((grader, grade))
+                rows.append((grader, grade, n))
+    headers = [[_text(c) for c in t.find("tr").find_all(["th", "td"])][:8]
+               for t in soup.find_all("table") if t.find("tr")]
+    return rows, headers
+
+
+# ---------- io ----------
+
 def load_existing(path):
     if not os.path.exists(path):
         return []
@@ -80,56 +163,119 @@ def load_existing(path):
         return [r for r in csv.DictReader(f) if "version" in r]
 
 
+def write_csv(path, fields, rows):
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        w.writerows(rows)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="src/data/prices.csv")
+    ap.add_argument("--pop-out", default="src/data/pop.csv")
     ap.add_argument("--divisor", type=float, default=100.0,
-                    help="values are assumed to be cents; use 1 if dollars")
+                    help="chart values are assumed to be cents; use 1 if dollars")
     ap.add_argument("--dump", action="store_true")
+    ap.add_argument("--dump-pop", action="store_true")
+    ap.add_argument("--save-html", metavar="DIR")
     args = ap.parse_args()
 
     existing = load_existing(args.out)
+    existing_pop = load_existing(args.pop_out)
     fresh, failed = [], []
+    fresh_pop, failed_pop = [], []
+    today = date.today().isoformat()
 
     for i, (version, url) in enumerate(CARDS.items()):
         if i:
             time.sleep(2)  # be polite between requests
         try:
-            data = fetch_chart(url)
-        except (requests.RequestException, ValueError, json.JSONDecodeError) as e:
+            html = fetch_html(url)
+        except requests.RequestException as e:
             print(f"warning: {version}: {e}", file=sys.stderr)
             failed.append(version)
+            failed_pop.append(version)
             continue
-        if args.dump:
+
+        if args.save_html:
+            os.makedirs(args.save_html, exist_ok=True)
+            slug = re.sub(r"\W+", "-", version.lower()).strip("-")
+            with open(os.path.join(args.save_html, slug + ".html"), "w", encoding="utf-8") as f:
+                f.write(html)
+
+        # --- chart ---
+        try:
+            data = extract_chart_data(html)
+        except (ValueError, json.JSONDecodeError) as e:
+            print(f"warning: {version}: {e}", file=sys.stderr)
+            data = None
+        if args.dump and data is not None:
             print(f"== {version}")
             for k, v in data.items():
                 print(" ", k, len(v), v[:2])
-            continue
-        rows = to_rows(version, data, args.divisor)
-        if not rows:
-            print(f"warning: {version}: no data points parsed", file=sys.stderr)
-            failed.append(version)
-            continue
-        fresh += rows
-        print(f"{version}: {len(rows)} points")
+        if not args.dump and not args.dump_pop:
+            rows = to_rows(version, data, args.divisor) if data else []
+            if rows:
+                fresh += rows
+                print(f"{version}: {len(rows)} price points")
+            else:
+                print(f"warning: {version}: no price points parsed", file=sys.stderr)
+                failed.append(version)
 
-    if args.dump:
+        # --- population ---
+        pop, headers = extract_pop(html)
+        if args.dump_pop:
+            print(f"== {version}: {len(pop)} pop rows")
+            for p in pop[:6]:
+                print("  ", p)
+            if not pop:
+                print("   tables seen (header cells):")
+                for h in headers[:8]:
+                    print("    ", h)
+        elif pop:
+            fresh_pop += [{"version": version, "grader": g, "grade": gr,
+                           "pop": n, "scraped_on": today} for g, gr, n in pop]
+            print(f"{version}: {len(pop)} pop rows")
+        else:
+            print(f"warning: {version}: no population table found", file=sys.stderr)
+            failed_pop.append(version)
+
+    if args.dump or args.dump_pop:
         return
 
-    # A failed card keeps its previously saved rows instead of vanishing.
-    kept = [r for r in existing if r["version"] in failed]
-    rows = fresh + kept
+    # A failed page keeps its previously saved rows instead of vanishing.
     if not fresh:
         sys.exit("error: nothing scraped from any card")
-
+    rows = fresh + [r for r in existing if r["version"] in failed]
     rows.sort(key=lambda r: (r["version"], r["grade"], r["date"]))
-    os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
-    with open(args.out, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS)
-        w.writeheader()
-        w.writerows(rows)
+    write_csv(args.out, FIELDS, rows)
     print(f"{len(rows)} rows -> {args.out}")
+
+    # Population is best-effort: it never fails the run.
+    if fresh_pop:
+        kept = [r for r in existing_pop if r["version"] in failed_pop]
+        pop_rows = fresh_pop + kept
+        pop_rows.sort(key=lambda r: (r["version"], r["grader"], r["grade"]))
+        write_csv(args.pop_out, POP_FIELDS, pop_rows)
+        print(f"{len(pop_rows)} rows -> {args.pop_out}")
+    else:
+        print("note: no population data found on any page; pop file not written "
+              "(run --dump-pop / --save-html to investigate)", file=sys.stderr)
 
 
 if __name__ == "__main__":
     main()
+EOF
+pip install beautifulsoup4 -q 2>&1 | tail -1; python3 -m py_compile scrape_chart.py && python3 - <<'EOF'
+import importlib.util
+s=importlib.util.spec_from_file_location("m","scrape_chart.py");m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+cols = """<table><tr><th>Grade</th><th>PSA</th><th>CGC</th></tr>
+<tr><td>10</td><td>1,234</td><td>56</td></tr><tr><td>9.5</td><td>–</td><td>12</td></tr><tr><td>9</td><td>2,000</td><td>30</td></tr></table>"""
+rows_t = """<table><tr><th></th><th>10</th><th>9</th><th>8</th></tr>
+<tr><td>PSA</td><td>1,234</td><td>2,000</td><td>900</td></tr><tr><td>BGS</td><td>5</td><td>7</td><td>9</td></tr></table>"""
+price = """<table><tr><th>Ungraded</th><th>Grade 7</th><th>Grade 8</th><th>Grade 9</th></tr><tr><td>$57.80 -$1.92</td><td>$172</td><td>$271</td><td>$458</td></tr></table>"""
+sales = """<table><tr><th>Sale Date</th><th>Title</th><th>Price</th></tr><tr><td>2026-11-23</td><td>x PSA 9</td><td>$435.00</td></tr></table>"""
+for name, html in [("cols",cols),("rows",rows_t),("price",price),("sales",sales),("all",cols+price+sales)]:
+    r,_ = m.extract_pop(html); print(name, r)
