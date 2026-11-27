@@ -42,7 +42,6 @@ SERIES = {
     "cib": "Grade 7",
     "new": "Grade 8",
     "graded": "Grade 9",
-    "boxonly": "Grade 9.5",
     "manualonly": "PSA 10",
 }
 
