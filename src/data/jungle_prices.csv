@@ -1200,7 +1200,7 @@ date,version,series,grade,price
 2026-08-01,English Electrode Unlimited,new,Grade 8,54.85
 2026-09-01,English Electrode Unlimited,new,Grade 8,57.57
 2026-10-01,English Electrode Unlimited,new,Grade 8,63.16
-2026-11-01,English Electrode Unlimited,new,Grade 8,67.99
+2026-11-01,English Electrode Unlimited,new,Grade 8,63.16
 2021-01-01,English Electrode Unlimited,graded,Grade 9,97.74
 2021-02-01,English Electrode Unlimited,graded,Grade 9,97.0
 2021-03-01,English Electrode Unlimited,graded,Grade 9,110.42
@@ -1406,7 +1406,7 @@ date,version,series,grade,price
 2026-08-01,English Electrode Unlimited,used,Ungraded,13.99
 2026-09-01,English Electrode Unlimited,used,Ungraded,17.89
 2026-10-01,English Electrode Unlimited,used,Ungraded,17.41
-2026-11-01,English Electrode Unlimited,used,Ungraded,10.5
+2026-11-01,English Electrode Unlimited,used,Ungraded,11.0
 2021-01-01,English Flareon 1st Edition,cib,Grade 7,145.0
 2021-02-01,English Flareon 1st Edition,cib,Grade 7,115.0
 2021-03-01,English Flareon 1st Edition,cib,Grade 7,135.0
@@ -3469,7 +3469,7 @@ date,version,series,grade,price
 2026-08-01,English Kangaskhan 1st Edition,cib,Grade 7,95.75
 2026-09-01,English Kangaskhan 1st Edition,cib,Grade 7,93.46
 2026-10-01,English Kangaskhan 1st Edition,cib,Grade 7,117.49
-2026-11-01,English Kangaskhan 1st Edition,cib,Grade 7,133.52
+2026-11-01,English Kangaskhan 1st Edition,cib,Grade 7,150.0
 2021-01-01,English Kangaskhan 1st Edition,new,Grade 8,86.5
 2021-02-01,English Kangaskhan 1st Edition,new,Grade 8,146.5
 2021-03-01,English Kangaskhan 1st Edition,new,Grade 8,133.75
@@ -3540,7 +3540,7 @@ date,version,series,grade,price
 2026-08-01,English Kangaskhan 1st Edition,new,Grade 8,146.57
 2026-09-01,English Kangaskhan 1st Edition,new,Grade 8,174.67
 2026-10-01,English Kangaskhan 1st Edition,new,Grade 8,213.84
-2026-11-01,English Kangaskhan 1st Edition,new,Grade 8,220.0
+2026-11-01,English Kangaskhan 1st Edition,new,Grade 8,211.75
 2021-02-01,English Kangaskhan 1st Edition,graded,Grade 9,282.5
 2021-03-01,English Kangaskhan 1st Edition,graded,Grade 9,282.5
 2021-04-01,English Kangaskhan 1st Edition,graded,Grade 9,271.25
@@ -3610,7 +3610,7 @@ date,version,series,grade,price
 2026-08-01,English Kangaskhan 1st Edition,graded,Grade 9,545.77
 2026-09-01,English Kangaskhan 1st Edition,graded,Grade 9,598.87
 2026-10-01,English Kangaskhan 1st Edition,graded,Grade 9,1164.47
-2026-11-01,English Kangaskhan 1st Edition,graded,Grade 9,715.45
+2026-11-01,English Kangaskhan 1st Edition,graded,Grade 9,734.94
 2021-03-01,English Kangaskhan 1st Edition,manualonly,PSA 10,3650.0
 2021-04-01,English Kangaskhan 1st Edition,manualonly,PSA 10,3650.0
 2021-05-01,English Kangaskhan 1st Edition,manualonly,PSA 10,3650.0
@@ -3751,7 +3751,7 @@ date,version,series,grade,price
 2026-08-01,English Kangaskhan 1st Edition,used,Ungraded,45.18
 2026-09-01,English Kangaskhan 1st Edition,used,Ungraded,49.23
 2026-10-01,English Kangaskhan 1st Edition,used,Ungraded,50.5
-2026-11-01,English Kangaskhan 1st Edition,used,Ungraded,68.0
+2026-11-01,English Kangaskhan 1st Edition,used,Ungraded,69.17
 2021-01-01,English Kangaskhan Unlimited,cib,Grade 7,22.0
 2021-02-01,English Kangaskhan Unlimited,cib,Grade 7,50.5
 2021-03-01,English Kangaskhan Unlimited,cib,Grade 7,48.0
@@ -4887,7 +4887,7 @@ date,version,series,grade,price
 2026-08-01,English Nidoqueen 1st Edition,cib,Grade 7,89.0
 2026-09-01,English Nidoqueen 1st Edition,cib,Grade 7,104.81
 2026-10-01,English Nidoqueen 1st Edition,cib,Grade 7,110.0
-2026-11-01,English Nidoqueen 1st Edition,cib,Grade 7,116.42
+2026-11-01,English Nidoqueen 1st Edition,cib,Grade 7,108.15
 2021-02-01,English Nidoqueen 1st Edition,new,Grade 8,175.0
 2021-03-01,English Nidoqueen 1st Edition,new,Grade 8,175.0
 2021-04-01,English Nidoqueen 1st Edition,new,Grade 8,163.5
@@ -5097,7 +5097,7 @@ date,version,series,grade,price
 2026-08-01,English Nidoqueen 1st Edition,manualonly,PSA 10,4845.0
 2026-09-01,English Nidoqueen 1st Edition,manualonly,PSA 10,5579.99
 2026-10-01,English Nidoqueen 1st Edition,manualonly,PSA 10,5669.95
-2026-11-01,English Nidoqueen 1st Edition,manualonly,PSA 10,5603.9
+2026-11-01,English Nidoqueen 1st Edition,manualonly,PSA 10,5597.64
 2021-01-01,English Nidoqueen 1st Edition,used,Ungraded,53.13
 2021-02-01,English Nidoqueen 1st Edition,used,Ungraded,50.0
 2021-03-01,English Nidoqueen 1st Edition,used,Ungraded,68.74
@@ -5168,7 +5168,7 @@ date,version,series,grade,price
 2026-08-01,English Nidoqueen 1st Edition,used,Ungraded,54.5
 2026-09-01,English Nidoqueen 1st Edition,used,Ungraded,47.23
 2026-10-01,English Nidoqueen 1st Edition,used,Ungraded,73.79
-2026-11-01,English Nidoqueen 1st Edition,used,Ungraded,77.5
+2026-11-01,English Nidoqueen 1st Edition,used,Ungraded,72.0
 2021-03-01,English Nidoqueen Unlimited,cib,Grade 7,62.5
 2021-04-01,English Nidoqueen Unlimited,cib,Grade 7,47.0
 2021-05-01,English Nidoqueen Unlimited,cib,Grade 7,44.26
@@ -5589,7 +5589,7 @@ date,version,series,grade,price
 2026-08-01,English Pidgeot 1st Edition,cib,Grade 7,115.84
 2026-09-01,English Pidgeot 1st Edition,cib,Grade 7,115.0
 2026-10-01,English Pidgeot 1st Edition,cib,Grade 7,109.13
-2026-11-01,English Pidgeot 1st Edition,cib,Grade 7,103.25
+2026-11-01,English Pidgeot 1st Edition,cib,Grade 7,100.0
 2021-01-01,English Pidgeot 1st Edition,new,Grade 8,146.25
 2021-02-01,English Pidgeot 1st Edition,new,Grade 8,163.66
 2021-03-01,English Pidgeot 1st Edition,new,Grade 8,162.38
@@ -5660,7 +5660,7 @@ date,version,series,grade,price
 2026-08-01,English Pidgeot 1st Edition,new,Grade 8,178.56
 2026-09-01,English Pidgeot 1st Edition,new,Grade 8,179.51
 2026-10-01,English Pidgeot 1st Edition,new,Grade 8,234.8
-2026-11-01,English Pidgeot 1st Edition,new,Grade 8,229.38
+2026-11-01,English Pidgeot 1st Edition,new,Grade 8,236.15
 2021-02-01,English Pidgeot 1st Edition,graded,Grade 9,276.52
 2021-03-01,English Pidgeot 1st Edition,graded,Grade 9,290.0
 2021-04-01,English Pidgeot 1st Edition,graded,Grade 9,297.76
@@ -5730,7 +5730,7 @@ date,version,series,grade,price
 2026-08-01,English Pidgeot 1st Edition,graded,Grade 9,498.38
 2026-09-01,English Pidgeot 1st Edition,graded,Grade 9,501.02
 2026-10-01,English Pidgeot 1st Edition,graded,Grade 9,820.61
-2026-11-01,English Pidgeot 1st Edition,graded,Grade 9,605.98
+2026-11-01,English Pidgeot 1st Edition,graded,Grade 9,607.99
 2021-02-01,English Pidgeot 1st Edition,manualonly,PSA 10,1125.0
 2021-03-01,English Pidgeot 1st Edition,manualonly,PSA 10,1125.0
 2021-04-01,English Pidgeot 1st Edition,manualonly,PSA 10,1125.0
@@ -5800,7 +5800,7 @@ date,version,series,grade,price
 2026-08-01,English Pidgeot 1st Edition,manualonly,PSA 10,6995.55
 2026-09-01,English Pidgeot 1st Edition,manualonly,PSA 10,7500.0
 2026-10-01,English Pidgeot 1st Edition,manualonly,PSA 10,9346.72
-2026-11-01,English Pidgeot 1st Edition,manualonly,PSA 10,7860.64
+2026-11-01,English Pidgeot 1st Edition,manualonly,PSA 10,7854.48
 2021-01-01,English Pidgeot 1st Edition,used,Ungraded,45.0
 2021-02-01,English Pidgeot 1st Edition,used,Ungraded,36.3
 2021-03-01,English Pidgeot 1st Edition,used,Ungraded,40.25
@@ -5871,7 +5871,7 @@ date,version,series,grade,price
 2026-08-01,English Pidgeot 1st Edition,used,Ungraded,56.43
 2026-09-01,English Pidgeot 1st Edition,used,Ungraded,64.77
 2026-10-01,English Pidgeot 1st Edition,used,Ungraded,73.79
-2026-11-01,English Pidgeot 1st Edition,used,Ungraded,70.5
+2026-11-01,English Pidgeot 1st Edition,used,Ungraded,74.25
 2021-01-01,English Pidgeot Unlimited,cib,Grade 7,52.0
 2021-02-01,English Pidgeot Unlimited,cib,Grade 7,78.15
 2021-03-01,English Pidgeot Unlimited,cib,Grade 7,84.91
@@ -6294,7 +6294,7 @@ date,version,series,grade,price
 2026-08-01,English Pinsir 1st Edition,cib,Grade 7,97.5
 2026-09-01,English Pinsir 1st Edition,cib,Grade 7,97.5
 2026-10-01,English Pinsir 1st Edition,cib,Grade 7,102.23
-2026-11-01,English Pinsir 1st Edition,cib,Grade 7,122.5
+2026-11-01,English Pinsir 1st Edition,cib,Grade 7,130.0
 2021-01-01,English Pinsir 1st Edition,new,Grade 8,99.33
 2021-02-01,English Pinsir 1st Edition,new,Grade 8,117.5
 2021-03-01,English Pinsir 1st Edition,new,Grade 8,84.5
@@ -6365,7 +6365,7 @@ date,version,series,grade,price
 2026-08-01,English Pinsir 1st Edition,new,Grade 8,137.5
 2026-09-01,English Pinsir 1st Edition,new,Grade 8,127.0
 2026-10-01,English Pinsir 1st Edition,new,Grade 8,177.5
-2026-11-01,English Pinsir 1st Edition,new,Grade 8,150.75
+2026-11-01,English Pinsir 1st Edition,new,Grade 8,149.88
 2021-02-01,English Pinsir 1st Edition,graded,Grade 9,239.0
 2021-03-01,English Pinsir 1st Edition,graded,Grade 9,227.5
 2021-04-01,English Pinsir 1st Edition,graded,Grade 9,237.19
@@ -6498,7 +6498,7 @@ date,version,series,grade,price
 2026-08-01,English Pinsir 1st Edition,manualonly,PSA 10,5644.0
 2026-09-01,English Pinsir 1st Edition,manualonly,PSA 10,5644.0
 2026-10-01,English Pinsir 1st Edition,manualonly,PSA 10,9778.45
-2026-11-01,English Pinsir 1st Edition,manualonly,PSA 10,7433.44
+2026-11-01,English Pinsir 1st Edition,manualonly,PSA 10,7530.29
 2021-01-01,English Pinsir 1st Edition,used,Ungraded,38.19
 2021-02-01,English Pinsir 1st Edition,used,Ungraded,36.28
 2021-03-01,English Pinsir 1st Edition,used,Ungraded,43.0
@@ -6569,7 +6569,7 @@ date,version,series,grade,price
 2026-08-01,English Pinsir 1st Edition,used,Ungraded,54.31
 2026-09-01,English Pinsir 1st Edition,used,Ungraded,58.84
 2026-10-01,English Pinsir 1st Edition,used,Ungraded,50.25
-2026-11-01,English Pinsir 1st Edition,used,Ungraded,63.47
+2026-11-01,English Pinsir 1st Edition,used,Ungraded,57.37
 2021-05-01,English Pinsir Unlimited,cib,Grade 7,36.0
 2021-06-01,English Pinsir Unlimited,cib,Grade 7,36.0
 2021-07-01,English Pinsir Unlimited,cib,Grade 7,32.39
@@ -11494,7 +11494,7 @@ date,version,series,grade,price
 2026-08-01,English Vileplume Unlimited,new,Grade 8,55.69
 2026-09-01,English Vileplume Unlimited,new,Grade 8,59.99
 2026-10-01,English Vileplume Unlimited,new,Grade 8,66.45
-2026-11-01,English Vileplume Unlimited,new,Grade 8,75.75
+2026-11-01,English Vileplume Unlimited,new,Grade 8,79.25
 2021-01-01,English Vileplume Unlimited,graded,Grade 9,61.0
 2021-02-01,English Vileplume Unlimited,graded,Grade 9,82.0
 2021-03-01,English Vileplume Unlimited,graded,Grade 9,90.0
@@ -11565,7 +11565,7 @@ date,version,series,grade,price
 2026-08-01,English Vileplume Unlimited,graded,Grade 9,122.5
 2026-09-01,English Vileplume Unlimited,graded,Grade 9,134.14
 2026-10-01,English Vileplume Unlimited,graded,Grade 9,115.0
-2026-11-01,English Vileplume Unlimited,graded,Grade 9,150.24
+2026-11-01,English Vileplume Unlimited,graded,Grade 9,150.75
 2021-09-01,English Vileplume Unlimited,manualonly,PSA 10,373.35
 2021-10-01,English Vileplume Unlimited,manualonly,PSA 10,302.65
 2021-11-01,English Vileplume Unlimited,manualonly,PSA 10,292.61
@@ -11628,7 +11628,7 @@ date,version,series,grade,price
 2026-08-01,English Vileplume Unlimited,manualonly,PSA 10,1365.22
 2026-09-01,English Vileplume Unlimited,manualonly,PSA 10,1341.87
 2026-10-01,English Vileplume Unlimited,manualonly,PSA 10,1680.14
-2026-11-01,English Vileplume Unlimited,manualonly,PSA 10,1672.47
+2026-11-01,English Vileplume Unlimited,manualonly,PSA 10,1671.92
 2021-01-01,English Vileplume Unlimited,used,Ungraded,13.98
 2021-02-01,English Vileplume Unlimited,used,Ungraded,10.25
 2021-03-01,English Vileplume Unlimited,used,Ungraded,10.5
@@ -11699,7 +11699,7 @@ date,version,series,grade,price
 2026-08-01,English Vileplume Unlimited,used,Ungraded,15.25
 2026-09-01,English Vileplume Unlimited,used,Ungraded,19.58
 2026-10-01,English Vileplume Unlimited,used,Ungraded,16.4
-2026-11-01,English Vileplume Unlimited,used,Ungraded,17.66
+2026-11-01,English Vileplume Unlimited,used,Ungraded,19.99
 2021-01-01,English Wigglytuff 1st Edition,cib,Grade 7,65.0
 2021-02-01,English Wigglytuff 1st Edition,cib,Grade 7,89.75
 2021-03-01,English Wigglytuff 1st Edition,cib,Grade 7,100.54
@@ -11770,7 +11770,7 @@ date,version,series,grade,price
 2026-08-01,English Wigglytuff 1st Edition,cib,Grade 7,78.0
 2026-09-01,English Wigglytuff 1st Edition,cib,Grade 7,74.51
 2026-10-01,English Wigglytuff 1st Edition,cib,Grade 7,101.03
-2026-11-01,English Wigglytuff 1st Edition,cib,Grade 7,86.24
+2026-11-01,English Wigglytuff 1st Edition,cib,Grade 7,89.02
 2021-01-01,English Wigglytuff 1st Edition,new,Grade 8,152.5
 2021-02-01,English Wigglytuff 1st Edition,new,Grade 8,132.5
 2021-03-01,English Wigglytuff 1st Edition,new,Grade 8,115.5
@@ -11841,7 +11841,7 @@ date,version,series,grade,price
 2026-08-01,English Wigglytuff 1st Edition,new,Grade 8,128.5
 2026-09-01,English Wigglytuff 1st Edition,new,Grade 8,150.58
 2026-10-01,English Wigglytuff 1st Edition,new,Grade 8,155.0
-2026-11-01,English Wigglytuff 1st Edition,new,Grade 8,155.33
+2026-11-01,English Wigglytuff 1st Edition,new,Grade 8,161.71
 2021-01-01,English Wigglytuff 1st Edition,graded,Grade 9,248.75
 2021-02-01,English Wigglytuff 1st Edition,graded,Grade 9,260.0
 2021-03-01,English Wigglytuff 1st Edition,graded,Grade 9,254.5
@@ -11912,7 +11912,7 @@ date,version,series,grade,price
 2026-08-01,English Wigglytuff 1st Edition,graded,Grade 9,369.41
 2026-09-01,English Wigglytuff 1st Edition,graded,Grade 9,346.39
 2026-10-01,English Wigglytuff 1st Edition,graded,Grade 9,666.67
-2026-11-01,English Wigglytuff 1st Edition,graded,Grade 9,552.43
+2026-11-01,English Wigglytuff 1st Edition,graded,Grade 9,546.25
 2021-01-01,English Wigglytuff 1st Edition,manualonly,PSA 10,1866.5
 2021-02-01,English Wigglytuff 1st Edition,manualonly,PSA 10,2000.0
 2021-03-01,English Wigglytuff 1st Edition,manualonly,PSA 10,1906.37
@@ -12055,7 +12055,7 @@ date,version,series,grade,price
 2026-08-01,English Wigglytuff 1st Edition,used,Ungraded,52.68
 2026-09-01,English Wigglytuff 1st Edition,used,Ungraded,53.75
 2026-10-01,English Wigglytuff 1st Edition,used,Ungraded,57.0
-2026-11-01,English Wigglytuff 1st Edition,used,Ungraded,56.56
+2026-11-01,English Wigglytuff 1st Edition,used,Ungraded,55.84
 2021-02-01,English Wigglytuff Unlimited,cib,Grade 7,30.0
 2021-03-01,English Wigglytuff Unlimited,cib,Grade 7,57.1
 2021-04-01,English Wigglytuff Unlimited,cib,Grade 7,49.3
@@ -12125,7 +12125,7 @@ date,version,series,grade,price
 2026-08-01,English Wigglytuff Unlimited,cib,Grade 7,40.0
 2026-09-01,English Wigglytuff Unlimited,cib,Grade 7,42.26
 2026-10-01,English Wigglytuff Unlimited,cib,Grade 7,45.12
-2026-11-01,English Wigglytuff Unlimited,cib,Grade 7,46.77
+2026-11-01,English Wigglytuff Unlimited,cib,Grade 7,46.51
 2021-02-01,English Wigglytuff Unlimited,new,Grade 8,37.84
 2021-03-01,English Wigglytuff Unlimited,new,Grade 8,61.42
 2021-04-01,English Wigglytuff Unlimited,new,Grade 8,61.42
@@ -12195,7 +12195,7 @@ date,version,series,grade,price
 2026-08-01,English Wigglytuff Unlimited,new,Grade 8,65.0
 2026-09-01,English Wigglytuff Unlimited,new,Grade 8,67.5
 2026-10-01,English Wigglytuff Unlimited,new,Grade 8,79.09
-2026-11-01,English Wigglytuff Unlimited,new,Grade 8,74.99
+2026-11-01,English Wigglytuff Unlimited,new,Grade 8,70.0
 2021-01-01,English Wigglytuff Unlimited,graded,Grade 9,129.0
 2021-02-01,English Wigglytuff Unlimited,graded,Grade 9,176.76
 2021-03-01,English Wigglytuff Unlimited,graded,Grade 9,164.15
@@ -12408,7 +12408,7 @@ date,version,series,grade,price
 2026-08-01,English Wigglytuff Unlimited,used,Ungraded,18.43
 2026-09-01,English Wigglytuff Unlimited,used,Ungraded,16.74
 2026-10-01,English Wigglytuff Unlimited,used,Ungraded,17.5
-2026-11-01,English Wigglytuff Unlimited,used,Ungraded,18.77
+2026-11-01,English Wigglytuff Unlimited,used,Ungraded,23.8
 2022-08-01,Japanese Clefable,cib,Grade 7,15.5
 2022-09-01,Japanese Clefable,cib,Grade 7,15.5
 2022-10-01,Japanese Clefable,cib,Grade 7,15.5
@@ -12625,7 +12625,7 @@ date,version,series,grade,price
 2026-08-01,Japanese Clefable,manualonly,PSA 10,680.0
 2026-09-01,Japanese Clefable,manualonly,PSA 10,749.99
 2026-10-01,Japanese Clefable,manualonly,PSA 10,818.81
-2026-11-01,Japanese Clefable,manualonly,PSA 10,797.6
+2026-11-01,Japanese Clefable,manualonly,PSA 10,795.0
 2022-05-01,Japanese Clefable,used,Ungraded,5.0
 2022-06-01,Japanese Clefable,used,Ungraded,6.19
 2022-07-01,Japanese Clefable,used,Ungraded,5.15
@@ -12680,7 +12680,7 @@ date,version,series,grade,price
 2026-08-01,Japanese Clefable,used,Ungraded,12.98
 2026-09-01,Japanese Clefable,used,Ungraded,16.3
 2026-10-01,Japanese Clefable,used,Ungraded,14.99
-2026-11-01,Japanese Clefable,used,Ungraded,16.97
+2026-11-01,Japanese Clefable,used,Ungraded,14.99
 2022-06-01,Japanese Electrode,cib,Grade 7,19.99
 2022-07-01,Japanese Electrode,cib,Grade 7,19.74
 2022-08-01,Japanese Electrode,cib,Grade 7,18.85
@@ -15524,7 +15524,7 @@ date,version,series,grade,price
 2026-08-01,Japanese Vaporeon,new,Grade 8,115.06
 2026-09-01,Japanese Vaporeon,new,Grade 8,108.95
 2026-10-01,Japanese Vaporeon,new,Grade 8,111.25
-2026-11-01,Japanese Vaporeon,new,Grade 8,117.03
+2026-11-01,Japanese Vaporeon,new,Grade 8,119.54
 2022-05-01,Japanese Vaporeon,graded,Grade 9,71.28
 2022-06-01,Japanese Vaporeon,graded,Grade 9,65.13
 2022-07-01,Japanese Vaporeon,graded,Grade 9,55.2
@@ -15579,7 +15579,7 @@ date,version,series,grade,price
 2026-08-01,Japanese Vaporeon,graded,Grade 9,305.5
 2026-09-01,Japanese Vaporeon,graded,Grade 9,300.39
 2026-10-01,Japanese Vaporeon,graded,Grade 9,306.0
-2026-11-01,Japanese Vaporeon,graded,Grade 9,275.0
+2026-11-01,Japanese Vaporeon,graded,Grade 9,273.5
 2022-05-01,Japanese Vaporeon,manualonly,PSA 10,500.0
 2022-06-01,Japanese Vaporeon,manualonly,PSA 10,399.98
 2022-07-01,Japanese Vaporeon,manualonly,PSA 10,399.98
@@ -15634,7 +15634,7 @@ date,version,series,grade,price
 2026-08-01,Japanese Vaporeon,manualonly,PSA 10,3867.36
 2026-09-01,Japanese Vaporeon,manualonly,PSA 10,3805.38
 2026-10-01,Japanese Vaporeon,manualonly,PSA 10,3984.5
-2026-11-01,Japanese Vaporeon,manualonly,PSA 10,3984.5
+2026-11-01,Japanese Vaporeon,manualonly,PSA 10,3398.87
 2022-05-01,Japanese Vaporeon,used,Ungraded,16.71
 2022-06-01,Japanese Vaporeon,used,Ungraded,11.65
 2022-07-01,Japanese Vaporeon,used,Ungraded,10.24
@@ -15689,7 +15689,7 @@ date,version,series,grade,price
 2026-08-01,Japanese Vaporeon,used,Ungraded,28.65
 2026-09-01,Japanese Vaporeon,used,Ungraded,34.38
 2026-10-01,Japanese Vaporeon,used,Ungraded,33.37
-2026-11-01,Japanese Vaporeon,used,Ungraded,29.49
+2026-11-01,Japanese Vaporeon,used,Ungraded,32.43
 2022-06-01,Japanese Venomoth,cib,Grade 7,12.5
 2022-07-01,Japanese Venomoth,cib,Grade 7,15.89
 2022-08-01,Japanese Venomoth,cib,Grade 7,15.63
@@ -16510,7 +16510,7 @@ date,version,series,grade,price
 2026-08-01,Japanese Vileplume,used,Ungraded,10.5
 2026-09-01,Japanese Vileplume,used,Ungraded,10.35
 2026-10-01,Japanese Vileplume,used,Ungraded,12.75
-2026-11-01,Japanese Vileplume,used,Ungraded,12.5
+2026-11-01,Japanese Vileplume,used,Ungraded,13.47
 2022-05-01,Japanese Wigglytuff,cib,Grade 7,28.0
 2022-06-01,Japanese Wigglytuff,cib,Grade 7,22.36
 2022-07-01,Japanese Wigglytuff,cib,Grade 7,17.81
@@ -16675,7 +16675,7 @@ date,version,series,grade,price
 2026-08-01,Japanese Wigglytuff,graded,Grade 9,93.37
 2026-09-01,Japanese Wigglytuff,graded,Grade 9,92.88
 2026-10-01,Japanese Wigglytuff,graded,Grade 9,112.26
-2026-11-01,Japanese Wigglytuff,graded,Grade 9,116.94
+2026-11-01,Japanese Wigglytuff,graded,Grade 9,111.51
 2022-05-01,Japanese Wigglytuff,manualonly,PSA 10,385.26
 2022-06-01,Japanese Wigglytuff,manualonly,PSA 10,180.4
 2022-07-01,Japanese Wigglytuff,manualonly,PSA 10,179.08
@@ -16730,7 +16730,7 @@ date,version,series,grade,price
 2026-08-01,Japanese Wigglytuff,manualonly,PSA 10,632.74
 2026-09-01,Japanese Wigglytuff,manualonly,PSA 10,701.33
 2026-10-01,Japanese Wigglytuff,manualonly,PSA 10,819.87
-2026-11-01,Japanese Wigglytuff,manualonly,PSA 10,799.59
+2026-11-01,Japanese Wigglytuff,manualonly,PSA 10,799.01
 2022-05-01,Japanese Wigglytuff,used,Ungraded,5.98
 2022-06-01,Japanese Wigglytuff,used,Ungraded,7.36
 2022-07-01,Japanese Wigglytuff,used,Ungraded,3.64
