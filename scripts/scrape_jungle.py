@@ -4,7 +4,7 @@ pages and write one tidy CSV covering several card versions.
 
     pip install requests
     python scrape_chart.py --dump     # print series keys per card, for debugging
-    python scrape_chart.py            # -> src/data/prices.csv
+    python scrape_chart.py            # -> src/data/jungle_prices.csv
 """
 import argparse
 import csv
@@ -81,7 +81,35 @@ SERIES = {
     "manualonly": "PSA 10",
 }
 
-FIELDS = ["date", "version", "series", "grade", "price"]
+# The original columns keep their positions; the new ones are appended at the end,
+# so notebooks that read columns by name (version, grade, date, price) are unaffected.
+FIELDS = ["date", "version", "series", "grade", "price", "set", "card", "edition"]
+
+SET_BY_SLUG = {
+    "pokemon-base-set": "Base",
+    "pokemon-japanese-expansion-pack": "Base",
+    "pokemon-jungle": "Jungle",
+    "pokemon-japanese-jungle": "Jungle",
+}
+EDITIONS = ("1st Edition", "Unlimited", "No Symbol", "Shadowless")
+
+
+def parse_label(label):
+    """'English Snorlax 1st Edition' -> ('Snorlax', '1st Edition'); 'Japanese Snorlax' -> ('Snorlax', 'Japanese')."""
+    if label.startswith("Japanese "):
+        return label[len("Japanese "):], "Japanese"
+    name = label[len("English "):] if label.startswith("English ") else label
+    for e in EDITIONS:
+        if name.endswith(" " + e):
+            return name[: -len(e) - 1], e
+    print(f"warning: can't parse edition from label: {label}", file=sys.stderr)
+    return name, ""
+
+
+def set_of(url):
+    slug = url.split("/game/")[1].split("/")[0]
+    # Unknown slugs fall back to a readable name, e.g. pokemon-fossil -> "Fossil".
+    return SET_BY_SLUG.get(slug, slug.replace("pokemon-", "").replace("japanese-", "").replace("-", " ").title())
 
 
 def extract_chart_data(html):
@@ -100,7 +128,9 @@ def fetch_chart(url):
     return extract_chart_data(resp.text)
 
 
-def to_rows(version, data, divisor):
+def to_rows(version, url, data, divisor):
+    card, edition = parse_label(version)
+    set_name = set_of(url)
     rows = []
     for key, label in SERIES.items():
         for ts, value in data.get(key, []):
@@ -108,7 +138,8 @@ def to_rows(version, data, divisor):
                 continue
             day = datetime.fromtimestamp(ts / 1000, tz=timezone.utc).date().isoformat()
             rows.append({"date": day, "version": version, "series": key,
-                         "grade": label, "price": round(value / divisor, 2)})
+                         "grade": label, "price": round(value / divisor, 2),
+                         "set": set_name, "card": card, "edition": edition})
     return rows
 
 
@@ -144,7 +175,7 @@ def main():
             for k, v in data.items():
                 print(" ", k, len(v), v[:2])
             continue
-        rows = to_rows(version, data, args.divisor)
+        rows = to_rows(version, url, data, args.divisor)
         if not rows:
             print(f"warning: {version}: no data points parsed", file=sys.stderr)
             failed.append(version)
@@ -157,6 +188,10 @@ def main():
 
     # A failed card keeps its previously saved rows instead of vanishing.
     kept = [r for r in existing if r["version"] in failed]
+    for r in kept:  # rows saved before the set/card/edition columns existed
+        if not r.get("set") and r["version"] in CARDS:
+            r["card"], r["edition"] = parse_label(r["version"])
+            r["set"] = set_of(CARDS[r["version"]])
     rows = fresh + kept
     if not fresh:
         sys.exit("error: nothing scraped from any card")
