@@ -19,12 +19,13 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python scripts/scrape_base.py
       - run: python scripts/scrape_jungle.py
+      - run: python scripts/merge_prices.py
 
       - name: Commit data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/data/
+          git add src/data/jungle_prices.csv src/data/base_prices.csv src/data/all_prices.csv
           git diff --cached --quiet || git commit -m "Update price data"
           git pull --rebase
           git push
