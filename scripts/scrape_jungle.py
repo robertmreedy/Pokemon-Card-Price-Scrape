@@ -81,9 +81,7 @@ SERIES = {
     "manualonly": "PSA 10",
 }
 
-# The original columns keep their positions; the new ones are appended at the end,
-# so notebooks that read columns by name (version, grade, date, price) are unaffected.
-FIELDS = ["date", "version", "series", "grade", "price", "set", "card", "edition"]
+FIELDS = ["date", "version", "series", "grade", "set", "card", "edition", "price"]
 
 SET_BY_SLUG = {
     "pokemon-base-set": "Base",
@@ -137,7 +135,7 @@ def to_rows(version, url, data, divisor):
             if not value:  # 0 / null = no sales that month
                 continue
             day = datetime.fromtimestamp(ts / 1000, tz=timezone.utc).date().isoformat()
-            rows.append({"date": day, "version": version, "series": key,
+            rows.append({"date": day, "version": version,
                          "grade": label, "price": round(value / divisor, 2),
                          "set": set_name, "card": card, "edition": edition})
     return rows
@@ -199,7 +197,7 @@ def main():
     rows.sort(key=lambda r: (r["version"], r["grade"], r["date"]))
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS)
+        w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)
     print(f"{len(rows)} rows -> {args.out}")
